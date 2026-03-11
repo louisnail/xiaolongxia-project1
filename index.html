@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小龙虾知识库 - 清爽水下生态主题</title>
+  <title>OpenClaw 知识库 - 从入门到精通的 AI 助手教程</title>
   <style>
     :root {
-      --primary: #ff6b4a;
-      --primary-dark: #e54d2b;
-      --ocean: #0a4f6b;
-      --ocean-light: #1a7a9e;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #ec4899;
+      --accent: #8b5cf6;
+      --bg: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.95);
       --text: #1e293b;
       --text-light: #64748b;
-      --border: #e2e8f0;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,84 +26,34 @@
       overflow-x: hidden;
     }
     
-    /* 极客时间风格 - 简洁白色背景 */
-    .bg-clean {
+    /* 动态渐变背景 */
+    .bg-gradient {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-      z-index: -2;
-    }
-    
-    /* 左侧鱼线和小龙虾 */
-    .fishing-line-container {
-      position: fixed;
-      left: 30px;
-      top: 100px;
-      width: 60px;
-      height: calc(100vh - 200px);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
       z-index: -1;
-      pointer-events: none;
     }
     
-    .fishing-line {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 2px;
-      height: 100%;
-      background: linear-gradient(180deg, transparent 0%, #cbd5e1 20%, #cbd5e1 80%, transparent 100%);
-      transform: translateX(-50%);
-    }
-    
-    /* 小龙虾在鱼线上爬 */
-    .crayfish-climbing {
-      position: absolute;
-      left: 50%;
-      width: 40px;
-      height: 40px;
-      transform: translateX(-50%);
-      animation: climb 8s ease-in-out infinite;
-    }
-    
-    @keyframes climb {
-      0%, 100% { top: 80%; }
-      50% { top: 20%; }
-    }
-    
-    .crayfish-climbing svg {
-      width: 100%;
-      height: 100%;
-      animation: wiggle 0.5s ease-in-out infinite;
-    }
-    
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-    }
-    
-    /* 小龙虾腿部动画 */
-    .crayfish-climbing .leg {
-      animation: leg-move 0.3s ease-in-out infinite;
-    }
-    
-    @keyframes leg-move {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-2px); }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     
     /* 导航栏 */
     .navbar {
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       padding: 1rem 0;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid var(--border);
     }
     
     .navbar-container {
@@ -116,78 +65,17 @@
       align-items: center;
     }
     
-    /* 动态小龙虾 Logo */
     .navbar-brand {
       font-size: 1.8rem;
       font-weight: 800;
-      color: var(--text);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      cursor: pointer;
-    }
-    
-    .logo-crayfish {
-      width: 48px;
-      height: 48px;
-      position: relative;
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    /* 悬浮动画 */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    
-    /* Hover 动画 - 旋转 + 挥钳 */
-    .navbar-brand:hover .logo-crayfish {
-      animation: crayfish-spin 0.6s ease-out;
-    }
-    
-    @keyframes crayfish-spin {
-      0% { transform: rotate(0deg) scale(1); }
-      25% { transform: rotate(-10deg) scale(1.1); }
-      50% { transform: rotate(180deg) scale(1.1); }
-      75% { transform: rotate(270deg) scale(1.1); }
-      100% { transform: rotate(360deg) scale(1); }
-    }
-    
-    /* 钳子挥动 */
-    .navbar-brand:hover .claw-left {
-      animation: claw-wave-left 0.3s ease-in-out 2;
-    }
-    
-    .navbar-brand:hover .claw-right {
-      animation: claw-wave-right 0.3s ease-in-out 2;
-    }
-    
-    @keyframes claw-wave-left {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(-20deg); }
-    }
-    
-    @keyframes claw-wave-right {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(20deg); }
-    }
-    
-    /* 吐泡泡 */
-    .navbar-brand:hover .bubble {
-      opacity: 1;
-      animation: bubble-rise 1s ease-out forwards;
-    }
-    
-    @keyframes bubble-rise {
-      0% { 
-        transform: translateY(0) scale(0);
-        opacity: 1;
-      }
-      100% { 
-        transform: translateY(-30px) scale(1);
-        opacity: 0;
-      }
     }
     
     .navbar-nav {
@@ -209,409 +97,485 @@
       color: var(--primary);
     }
     
+    .navbar-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s;
+    }
+    
+    .navbar-nav a:hover::after {
+      width: 100%;
+    }
+    
     /* Hero 区域 */
     .hero {
-      padding: 4rem 0 3rem;
       text-align: center;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      padding: 6rem 2rem 4rem;
+      color: white;
     }
     
     .hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      letter-spacing: -2px;
     }
     
     .hero p {
-      font-size: 1.25rem;
-      color: var(--text-light);
-      max-width: 600px;
-      margin: 0 auto 2rem;
+      font-size: 1.5rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     
-    /* 分类筛选 */
-    .filter-section {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem 0;
-      position: sticky;
-      top: 73px;
-      z-index: 100;
-    }
-    
-    .filter-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    
-    .filter-row {
+    .hero-stats {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-    
-    .filter-label {
-      font-weight: 600;
-      color: var(--text-light);
-      margin-right: 0.5rem;
-      font-size: 0.95rem;
-    }
-    
-    .filter-tags {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    
-    .filter-tag {
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      background: #f1f5f9;
-      color: var(--text-light);
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      border: 1px solid transparent;
-    }
-    
-    .filter-tag:hover,
-    .filter-tag.active {
-      background: var(--primary);
-      color: white;
-    }
-    
-    /* 内容网格 */
-    .content-section {
-      padding: 2rem 0 4rem;
-    }
-    
-    .content-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    
-    .content-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      transition: all 0.3s;
-      border: 1px solid var(--border);
-      cursor: pointer;
-    }
-    
-    .content-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    }
-    
-    .card-thumb {
-      width: 100%;
-      height: 160px;
-      background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean) 100%);
-      display: flex;
-      align-items: center;
+      gap: 3rem;
       justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    
+    .stat-item {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 2.5rem;
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .stat-number {
       font-size: 3rem;
-      color: white;
+      font-weight: 900;
+      display: block;
     }
     
-    .card-body {
-      padding: 1rem;
-    }
-    
-    .card-title {
-      font-weight: 600;
+    .stat-label {
       font-size: 1rem;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+      display: block;
+    }
+    
+    /* 主容器 */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    /* 板块标题 */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .section-header p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+    }
+    
+    /* 卡片网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    /* 卡片样式 */
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    }
+    
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+    
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
       color: var(--text);
+      margin-bottom: 1rem;
     }
     
     .card-meta {
       display: flex;
       gap: 1rem;
-      color: var(--text-light);
-      font-size: 0.85rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
     }
     
-    .card-meta span {
-      display: flex;
+    .card-tag {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
       align-items: center;
       gap: 0.25rem;
     }
     
-    /* 悬浮上传按钮 */
-    .upload-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 107, 74, 0.4);
-      transition: all 0.3s;
-      display: flex;
+    .card-time {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      gap: 0.25rem;
     }
     
-    .upload-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(255, 107, 74, 0.5);
+    .card p {
+      color: var(--text-light);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 1.5rem 0;
+    }
+    
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: gap 0.3s;
+    }
+    
+    .card-link:hover {
+      gap: 0.75rem;
+      text-decoration: underline;
+    }
+    
+    /* CTA 区域 */
+    .cta {
+      background: rgba(255,255,255,0.95);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      text-align: center;
+      margin-top: 4rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    .cta h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    
+    .cta p {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
     }
     
     /* 页脚 */
     footer {
-      background: #fff;
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      color: white;
       text-align: center;
-      color: var(--text-light);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+    
+    footer a {
+      color: white;
+      text-decoration: underline;
+      margin: 0 0.5rem;
     }
     
     /* 响应式 */
     @media (max-width: 768px) {
-      .navbar-nav {
-        display: none;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .fishing-line-container {
-        display: none;
-      }
+      .navbar-nav { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; }
+      .grid { grid-template-columns: 1fr; }
+      .section-header h2 { font-size: 2rem; }
+      .stat-item { padding: 1rem 1.5rem; }
+      .stat-number { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
-  <!-- 简洁白色背景 -->
-  <div class="bg-clean"></div>
+  <div class="bg-gradient"></div>
   
-  <!-- 左侧鱼线和小龙虾 -->
-  <div class="fishing-line-container">
-    <div class="fishing-line"></div>
-    <div class="crayfish-climbing">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <!-- 小龙虾身体 -->
-        <ellipse cx="50" cy="50" rx="20" ry="25" fill="#ff6b4a"/>
-        <!-- 头部 -->
-        <circle cx="50" cy="30" r="15" fill="#ff6b4a"/>
-        <!-- 眼睛 -->
-        <circle cx="45" cy="25" r="3" fill="white"/>
-        <circle cx="55" cy="25" r="3" fill="white"/>
-        <circle cx="45" cy="25" r="1.5" fill="black"/>
-        <circle cx="55" cy="25" r="1.5" fill="black"/>
-        <!-- 左钳 -->
-        <path class="claw-left" d="M35 35 Q25 25 20 30 Q15 35 20 40" stroke="#e54d2b" stroke-width="4" fill="none"/>
-        <!-- 右钳 -->
-        <path class="claw-right" d="M65 35 Q75 25 80 30 Q85 35 80 40" stroke="#e54d2b" stroke-width="4" fill="none"/>
-        <!-- 腿部 -->
-        <line class="leg" x1="35" y1="50" x2="25" y2="60" stroke="#e54d2b" stroke-width="2"/>
-        <line class="leg" x1="40" y1="55" x2="30" y2="65" stroke="#e54d2b" stroke-width="2"/>
-        <line class="leg" x1="60" y1="55" x2="70" y2="65" stroke="#e54d2b" stroke-width="2"/>
-        <line class="leg" x1="65" y1="50" x2="75" y2="60" stroke="#e54d2b" stroke-width="2"/>
-        <!-- 尾巴 -->
-        <path d="M50 75 Q40 85 50 90 Q60 85 50 75" fill="#ff6b4a"/>
-      </svg>
-    </div>
-  </div>
-  
-  <!-- 导航栏 -->
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="#" class="navbar-brand">
-        <!-- 动态小龙虾 Logo -->
-        <div class="logo-crayfish">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <!-- 泡泡 -->
-            <circle class="bubble" cx="70" cy="20" r="5" fill="rgba(255,255,255,0.6)" opacity="0"/>
-            <circle class="bubble" cx="80" cy="30" r="3" fill="rgba(255,255,255,0.6)" opacity="0"/>
-            <circle class="bubble" cx="75" cy="15" r="4" fill="rgba(255,255,255,0.6)" opacity="0"/>
-            <!-- 身体 -->
-            <ellipse cx="50" cy="55" rx="22" ry="28" fill="#ff6b4a"/>
-            <!-- 头部 -->
-            <circle cx="50" cy="32" r="18" fill="#ff6b4a"/>
-            <!-- 眼睛 -->
-            <circle cx="44" cy="28" r="4" fill="white"/>
-            <circle cx="56" cy="28" r="4" fill="white"/>
-            <circle cx="44" cy="28" r="2" fill="black"/>
-            <circle cx="56" cy="28" r="2" fill="black"/>
-            <!-- 左钳 -->
-            <path class="claw-left" d="M32 38 Q20 25 15 30 Q10 38 18 42" stroke="#e54d2b" stroke-width="5" fill="none"/>
-            <ellipse cx="15" cy="32" rx="6" ry="8" fill="#ff6b4a"/>
-            <!-- 右钳 -->
-            <path class="claw-right" d="M68 38 Q80 25 85 30 Q90 38 82 42" stroke="#e54d2b" stroke-width="5" fill="none"/>
-            <ellipse cx="85" cy="32" rx="6" ry="8" fill="#ff6b4a"/>
-            <!-- 腿部 -->
-            <line class="leg" x1="32" y1="55" x2="20" y2="68" stroke="#e54d2b" stroke-width="3"/>
-            <line class="leg" x1="38" y1="60" x2="28" y2="72" stroke="#e54d2b" stroke-width="3"/>
-            <line class="leg" x1="62" y1="60" x2="72" y2="72" stroke="#e54d2b" stroke-width="3"/>
-            <line class="leg" x1="68" y1="55" x2="80" y2="68" stroke="#e54d2b" stroke-width="3"/>
-            <!-- 尾巴 -->
-            <path d="M50 83 Q38 95 50 98 Q62 95 50 83" fill="#ff6b4a"/>
-          </svg>
-        </div>
-        <span>小龙虾知识库</span>
-      </a>
-      
+      <a href="index.html" class="navbar-brand">🐾 OpenClaw</a>
       <ul class="navbar-nav">
-        <li><a href="#" class="active">首页</a></li>
-        <li><a href="#">文档</a></li>
-        <li><a href="#">Skills</a></li>
-        <li><a href="#">脑图</a></li>
-        <li><a href="#">视频</a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="docs.html">文档中心</a></li>
+        <li><a href="skills.html">Skills 示例</a></li>
+        <li><a href="mindmaps.html">知识脑图</a></li>
+        <li><a href="videos.html">视频资源</a></li>
       </ul>
-      
-      <div style="display: flex; gap: 1rem; align-items: center;">
-        <button style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">🔍</button>
-        <button style="background: var(--primary); color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 20px; cursor: pointer; font-weight: 600;">登录</button>
-      </div>
     </div>
   </nav>
   
-  <!-- Hero 区域 -->
   <section class="hero">
-    <h1>🦞 小龙虾知识库</h1>
-    <p>清爽水下生态主题的内容分享平台，发现更多精彩</p>
-  </section>
-  
-  <!-- 分类筛选 -->
-  <section class="filter-section">
-    <div class="filter-container">
-      <div class="filter-row">
-        <span class="filter-label">方向：</span>
-        <div class="filter-tags">
-          <span class="filter-tag active">全部</span>
-          <span class="filter-tag">OpenClaw</span>
-          <span class="filter-tag">Skills</span>
-          <span class="filter-tag">部署</span>
-          <span class="filter-tag">最佳实践</span>
-        </div>
+    <h1>🐾 OpenClaw 知识库</h1>
+    <p>从入门到精通 · 傻瓜式教程 · 让你的 AI 助手更强大</p>
+    
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">8</span>
+        <span class="stat-label">核心文档</span>
       </div>
-      <div class="filter-row">
-        <span class="filter-label">分类：</span>
-        <div class="filter-tags">
-          <span class="filter-tag active">全部</span>
-          <span class="filter-tag">教程</span>
-          <span class="filter-tag">案例</span>
-          <span class="filter-tag">工具</span>
-          <span class="filter-tag">视频</span>
-        </div>
+      <div class="stat-item">
+        <span class="stat-number">28+</span>
+        <span class="stat-label">Skills</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">视频教程</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">完全免费</span>
       </div>
     </div>
   </section>
   
-  <!-- 内容区域 -->
-  <section class="content-section">
-    <div class="content-container">
-      <div class="content-grid">
-        <div class="content-card">
-          <div class="card-thumb">📄</div>
-          <div class="card-body">
-            <h3 class="card-title">OpenClaw 快速入门指南</h3>
-            <div class="card-meta">
-              <span>👁 1.2k</span>
-              <span>👍 234</span>
-              <span>💬 56</span>
-            </div>
-          </div>
+  <div class="container">
+    <div class="section-header">
+      <h2>📚 核心教程</h2>
+      <p>8 篇精心编写的教程，从零基础到精通</p>
+    </div>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <h3>安装指南</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐ 简单</span>
+          <span class="card-time">⏱️ 15 分钟</span>
         </div>
-        
-        <div class="content-card">
-          <div class="card-thumb">🎬</div>
-          <div class="card-body">
-            <h3 class="card-title">Skills 开发实战教程</h3>
-            <div class="card-meta">
-              <span>👁 856</span>
-              <span>👍 189</span>
-              <span>💬 32</span>
-            </div>
-          </div>
+        <p>零基础安装教程，15 分钟快速部署 OpenClaw 环境。包含 Node.js 安装、依赖配置、渠道接入等完整步骤。</p>
+        <a href="docs/01-安装指南.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🚀</span>
+        <h3>快速开始</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐ 简单</span>
+          <span class="card-time">⏱️ 30 分钟</span>
         </div>
-        
-        <div class="content-card">
-          <div class="card-thumb">📊</div>
-          <div class="card-body">
-            <h3 class="card-title">部署配置详解</h3>
-            <div class="card-meta">
-              <span>👁 2.1k</span>
-              <span>👍 567</span>
-              <span>💬 89</span>
-            </div>
-          </div>
+        <p>发送第一条消息，理解基本概念（Session、Agent、Skill），配置常用功能，排查常见问题。</p>
+        <a href="docs/02-快速开始.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">⚙️</span>
+        <h3>配置详解</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐⭐ 中等</span>
+          <span class="card-time">⏱️ 1 小时</span>
         </div>
-        
-        <div class="content-card">
-          <div class="card-thumb">🛠️</div>
-          <div class="card-body">
-            <h3 class="card-title">最佳实践案例分享</h3>
-            <div class="card-meta">
-              <span>👁 723</span>
-              <span>👍 156</span>
-              <span>💬 28</span>
-            </div>
-          </div>
+        <p>完全掌握配置文件，包括 Gateway 配置、渠道接入（Telegram/微信/Discord）、模型配置、环境变量管理等。</p>
+        <a href="docs/03-配置详解.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">💬</span>
+        <h3>提示词工程</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐⭐ 中等</span>
+          <span class="card-time">⏱️ 1 小时</span>
         </div>
-        
-        <div class="content-card">
-          <div class="card-thumb">📚</div>
-          <div class="card-body">
-            <h3 class="card-title">提示词工程指南</h3>
-            <div class="card-meta">
-              <span>👁 1.5k</span>
-              <span>👍 423</span>
-              <span>💬 67</span>
-            </div>
-          </div>
+        <p>设计更好的提示词，获得更好的 AI 回复质量。包含角色扮演、思维链、少样本学习等高级技巧。</p>
+        <a href="docs/04-提示词工程.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🛠️</span>
+        <h3>Skills 开发</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐⭐⭐ 进阶</span>
+          <span class="card-time">⏱️ 2 小时</span>
         </div>
-        
-        <div class="content-card">
-          <div class="card-thumb">🔧</div>
-          <div class="card-body">
-            <h3 class="card-title">Token 优化技巧</h3>
-            <div class="card-meta">
-              <span>👁 932</span>
-              <span>👍 278</span>
-              <span>💬 45</span>
-            </div>
-          </div>
+        <p>从 0 到 1 创建自定义 Skills，扩展 AI 能力。包含完整示例代码、调试技巧、最佳实践。</p>
+        <a href="docs/05-Skills 开发.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">⏰</span>
+        <h3>定时任务</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐⭐ 中等</span>
+          <span class="card-time">⏱️ 45 分钟</span>
         </div>
+        <p>配置 Cron Jobs，让 AI 自动执行定时任务。包含 at、every、cron 三种调度方式和完整示例。</p>
+        <a href="docs/06-定时任务.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">💰</span>
+        <h3>Token 优化</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐⭐⭐ 进阶</span>
+          <span class="card-time">⏱️ 1 小时</span>
+        </div>
+        <p>省钱就是赚钱，优化 Token 使用降低 30-60% 成本。包含提示词优化、上下文管理、缓存复用等策略。</p>
+        <a href="docs/07-Token 优化.html" class="card-link">开始学习 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🏆</span>
+        <h3>最佳实践</h3>
+        <div class="card-meta">
+          <span class="card-tag">⭐⭐ 中等</span>
+          <span class="card-time">⏱️ 1 小时</span>
+        </div>
+        <p>来自社区的经验总结，涵盖架构设计、开发规范、性能优化、安全建议、运维部署、故障排查。</p>
+        <a href="docs/08-最佳实践.html" class="card-link">开始学习 →</a>
       </div>
     </div>
-  </section>
+    
+    <div class="section-header">
+      <h2>💻 进阶资源</h2>
+      <p>代码示例、知识脑图、视频教程，全方位学习</p>
+    </div>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <h3>QoderWork 安装教程</h3>
+        <p>利用 QoderWork 桌面 AI 助手的自主规划能力，一键自动化安装 OpenClaw。本地执行、安全沙箱、无需逐步指令。</p>
+        <a href="qoder-install.html" class="card-link">查看教程 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">💻</span>
+        <h3>Skills 示例代码</h3>
+        <p>4 个完整 Skills 示例代码（quote-of-day、todo-list、file-processor、web-scraper）+ 8 个 Qoder 编程 Skills，从入门到进阶完整学习路径。</p>
+        <a href="skills.html" class="card-link">查看代码 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <h3>知识脑图</h3>
+        <p>3 个精心制作的知识脑图（核心概念、Skills 开发、使用场景），快速建立对 OpenClaw 的整体认知框架。</p>
+        <a href="mindmaps.html" class="card-link">查看脑图 →</a>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">📺</span>
+        <h3>B 站视频教程</h3>
+        <p>精选 10+ 个 B 站高质量 OpenClaw 教程，包括安装指南、Skills 开发、深度评测等，观看效率优先。</p>
+        <a href="videos.html" class="card-link">观看视频 →</a>
+      </div>
+    </div>
+    
+    <div class="cta">
+      <h3>🚀 准备好开始学习了吗？</h3>
+      <p>从安装指南开始，一步步掌握 OpenClaw 的强大功能</p>
+      <div class="cta-buttons">
+        <a href="docs/01-安装指南.html" class="btn btn-primary">
+          📦 开始安装
+        </a>
+        <a href="docs.html" class="btn btn-secondary">
+          📚 浏览所有文档
+        </a>
+      </div>
+    </div>
+  </div>
   
-  <!-- 悬浮上传按钮 -->
-  <button class="upload-btn">+</button>
-  
-  <!-- 页脚 -->
   <footer>
-    <p>© 2026 小龙虾知识库 - 清爽水下生态主题</p>
+    <p>🐾 OpenClaw 知识库 | MIT License</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/cchen1-08/openclaw-kb" target="_blank">GitHub</a> · 
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a> · 
+      <a href="https://discord.com/invite/clawd" target="_blank">Discord 社区</a>
+    </p>
   </footer>
 </body>
 </html>
