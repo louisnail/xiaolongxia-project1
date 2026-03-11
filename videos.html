@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频资源 - OpenClaw 知识库</title>
+  <style>
+    :root { --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #64748b; --bg: #f1f5f9; --card-bg: #ffffff; --text: #0f172a; --text-light: #475569; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: var(--text); line-height: 1.6; min-height: 100vh; }
+    .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
+    .navbar-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .navbar-brand { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+    .navbar-nav { display: flex; gap: 2rem; list-style: none; }
+    .navbar-nav a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+    .navbar-nav a:hover { color: var(--primary); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+    .hero { text-align: center; color: white; margin-bottom: 3rem; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .hero p { font-size: 1.25rem; opacity: 0.95; }
+    .stats { display: flex; gap: 2rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
+    .stat-card { background: rgba(255,255,255,0.95); padding: 1.5rem 2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px); }
+    .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+    .stat-label { color: var(--secondary); font-size: 0.9rem; margin-top: 0.5rem; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+    .video-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s; }
+    .video-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+    .video-thumbnail { width: 100%; height: 200px; background: linear-gradient(135deg, var(--primary), #7c3aed); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; }
+    .video-content { padding: 1.5rem; }
+    .video-title { font-size: 1.2rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+    .video-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--secondary); margin-bottom: 1rem; flex-wrap: wrap; }
+    .video-meta span { display: flex; align-items: center; gap: 0.25rem; }
+    .video-description { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
+    .video-stats { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--secondary); margin-bottom: 1rem; }
+    .video-link { display: inline-block; background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s; }
+    .video-link:hover { background: var(--primary-dark); }
+    .tag { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    .tag-install { background: #dbeafe; color: #1e40af; }
+    .tag-skill { background: #dcfce7; color: #166534; }
+    .tag-advanced { background: #fef3c7; color: #92400e; }
+    .tag-review { background: #fee2e2; color: #991b1b; }
+    footer { background: rgba(0,0,0,0.2); color: white; text-align: center; padding: 2rem; margin-top: 4rem; }
+    footer a { color: white; text-decoration: underline; }
+    @media (max-width: 768px) { .navbar-nav { display: none; } .hero h1 { font-size: 2rem; } .video-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="index.html" class="navbar-brand">🐾 OpenClaw 知识库</a>
+      <ul class="navbar-nav">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="docs.html">文档中心</a></li>
+        <li><a href="skills.html">Skills 示例</a></li>
+        <li><a href="mindmaps.html">知识脑图</a></li>
+        <li><a href="videos.html">视频资源</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="hero">
+      <h1>📺 视频资源</h1>
+      <p>精选 B 站高质量 OpenClaw 教程，观看效率优先</p>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">精选视频</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">总时长 (分钟)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">分类</div>
+      </div>
+    </div>
+    
+    <h2 style="color: white; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🔥 热门推荐</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumbnail">🎬</div>
+        <div class="video-content">
+          <h3 class="video-title">一个视频搞懂 OpenClaw！</h3>
+          <div class="video-meta">
+            <span>👤 林亦 LYi</span>
+            <span>⏱️ 09:53</span>
+            <span>📅 02-28</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 133.4 万</span>
+            <span>👍 1.7 万</span>
+          </div>
+          <p class="video-description">全面介绍 OpenClaw 的核心概念、功能特点和使用场景，适合快速了解 OpenClaw 是什么、能做什么。</p>
+          <span class="tag tag-install">入门必看</span>
+          <a href="https://www.bilibili.com/video/BV1jEAaz3E6K/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumbnail">🦞</div>
+        <div class="video-content">
+          <h3 class="video-title">OpenClaw 小龙虾保姆级安装教程！小白 10 分钟搞定本地部署</h3>
+          <div class="video-meta">
+            <span>👤 林粒粒呀</span>
+            <span>⏱️ 09:50</span>
+            <span>📅 03-05</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 28.5 万</span>
+            <span>👍 2470</span>
+          </div>
+          <p class="video-description">Windows 系统 + 接入飞书的完整安装教程，零基础也能轻松上手，步骤详细，适合新手。</p>
+          <span class="tag tag-install">安装教程</span>
+          <a href="https://www.bilibili.com/video/BV1UsP1zqEWc/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumbnail">🎓</div>
+        <div class="video-content">
+          <h3 class="video-title">【保姆级教程】全网最详细的 OpenClaw 教学</h3>
+          <div class="video-meta">
+            <span>👤 聚客 AI 学院</span>
+            <span>⏱️ 2:48:44</span>
+            <span>📅 1 小时前</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 1942</span>
+            <span>👍 131</span>
+          </div>
+          <p class="video-description">本地部署/接入微信/飞书/钉钉完整教学，附带操作文档，比付费效果强百倍！超详细教程。</p>
+          <span class="tag tag-install">完整教程</span>
+          <a href="https://www.bilibili.com/video/BV1LXNMzmEw4/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+    </div>
+    
+    <h2 style="color: white; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🛠️ Skills 开发</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumbnail">💻</div>
+        <div class="video-content">
+          <h3 class="video-title">OpenClaw Skills 开发全流程精讲</h3>
+          <div class="video-meta">
+            <span>👤 北大李晓华教人工智能</span>
+            <span>⏱️ 4 课时</span>
+            <span>📅 系列课程</span>
+          </div>
+          <p class="video-description">北京大学老师主讲的 Skills 开发系列课程，从基础到进阶，系统学习自定义 Skills 开发。</p>
+          <span class="tag tag-skill">Skills 开发</span>
+          <a href="https://www.bilibili.com/cheese/play/ss117867946" target="_blank" class="video-link">观看课程 →</a>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumbnail">🚀</div>
+        <div class="video-content">
+          <h3 class="video-title">OpenClaw 自我开发 Skills 实战</h3>
+          <div class="video-meta">
+            <span>👤 实战教程</span>
+            <span>⏱️ 系列</span>
+          </div>
+          <p class="video-description">Skills 实战教程，通过实际案例学习如何开发实用的自定义 Skills。</p>
+          <span class="tag tag-skill">实战</span>
+          <a href="https://www.bilibili.com/cheese/play/ss863162622" target="_blank" class="video-link">观看课程 →</a>
+        </div>
+      </div>
+    </div>
+    
+    <h2 style="color: white; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎯 进阶教程</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumbnail">📈</div>
+        <div class="video-content">
+          <h3 class="video-title">精通 OpenClaw 变高手 - 从中级到高级完整教程</h3>
+          <div class="video-meta">
+            <span>👤 技术爬爬虾</span>
+            <span>⏱️ 18:54</span>
+            <span>📅 19 小时前</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 3.4 万</span>
+            <span>👍 271</span>
+          </div>
+          <p class="video-description">从中级到高级的完整教程，深入理解 OpenClaw 架构和高级用法，适合有一定基础的用户。</p>
+          <span class="tag tag-advanced">进阶</span>
+          <a href="https://www.bilibili.com/video/BV1ZiNwzPEhP/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumbnail">🔍</div>
+        <div class="video-content">
+          <h3 class="video-title">OpenClaw 真有用吗？猛玩一个月，深度拆解四层用法</h3>
+          <div class="video-meta">
+            <span>👤 人工大黑</span>
+            <span>⏱️ 09:59</span>
+            <span>📅 22 小时前</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 5.5 万</span>
+            <span>👍 313</span>
+          </div>
+          <p class="video-description">深度使用体验分享，一个月的实际使用总结，四层用法详细拆解，客观评价 OpenClaw 的价值。</p>
+          <span class="tag tag-review">深度评测</span>
+          <a href="https://www.bilibili.com/video/BV1fkPazmENy/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+    </div>
+    
+    <h2 style="color: white; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">💬 讨论与观点</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumbnail">🤔</div>
+        <div class="video-content">
+          <h3 class="video-title">OpenClaw 是什么？你真的需要吗？</h3>
+          <div class="video-meta">
+            <span>👤 Ai 小蓝鲸</span>
+            <span>⏱️ 03:40</span>
+            <span>📅 8 小时前</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 463</span>
+            <span>👍 10</span>
+          </div>
+          <p class="video-description">理性分析 OpenClaw 的定位和适用场景，帮助你判断是否真的需要部署 OpenClaw。</p>
+          <span class="tag tag-review">观点</span>
+          <a href="https://www.bilibili.com/video/BV1x2NAzjEnV/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumbnail">⚖️</div>
+        <div class="video-content">
+          <h3 class="video-title">吹上天的废物？深度解析为什么你根本不需要 OpenClaw</h3>
+          <div class="video-meta">
+            <span>👤 干货没人看</span>
+            <span>⏱️ 14:35</span>
+            <span>📅 6 小时前</span>
+          </div>
+          <div class="video-stats">
+            <span>👁️ 3389</span>
+            <span>👍 11</span>
+          </div>
+          <p class="video-description">反向思考，深度解析 OpenClaw 的局限性和不适用场景，提供客观的参考意见。</p>
+          <span class="tag tag-review">批判</span>
+          <a href="https://www.bilibili.com/video/BV1iaNTzGENf/" target="_blank" class="video-link">观看视频 →</a>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.95); padding: 2rem; border-radius: 16px; margin-top: 3rem; text-align: center;">
+      <h3 style="color: var(--primary); margin-bottom: 1rem;">📝 视频征集</h3>
+      <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+        如果你有优质的 OpenClaw 教程视频推荐，欢迎提交！<br>
+        我们会定期审核并添加到资源列表中。
+      </p>
+      <a href="https://github.com/cchen1-08/openclaw-kb/issues" target="_blank" style="display: inline-block; background: var(--primary); color: white; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">提交视频建议 →</a>
+    </div>
+  </div>
+  
+  <footer>
+    <p>🐾 OpenClaw 知识库 | MIT License</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="https://github.com/cchen1-08/openclaw-kb">GitHub</a> · 
+      <a href="https://docs.openclaw.ai">官方文档</a> · 
+      <a href="https://discord.com/invite/clawd">Discord 社区</a>
+    </p>
+  </footer>
+</body>
+</html>

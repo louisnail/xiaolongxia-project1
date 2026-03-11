@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills 开发脑图 - OpenClaw 知识库</title>
+  <style>
+    :root { --primary: #6366f1; --secondary: #ec4899; --accent: #8b5cf6; --bg: #0f172a; --text: #1e293b; --card-bg: rgba(255,255,255,0.98); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); background-size: 400% 400%; animation: gradient 15s ease infinite; min-height: 100vh; color: var(--text); }
+    @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .navbar { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+    .navbar-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .navbar-brand { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+    .navbar-nav { display: flex; gap: 2.5rem; list-style: none; }
+    .navbar-nav a { color: #64748b; text-decoration: none; font-weight: 600; }
+    .navbar-nav a:hover { color: var(--primary); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+    .hero { text-align: center; color: white; margin-bottom: 3rem; }
+    .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .hero p { font-size: 1.3rem; opacity: 0.95; max-width: 800px; margin: 0 auto; }
+    .mindmap-container { background: var(--card-bg); border-radius: 24px; padding: 4rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 3rem; }
+    .mindmap-title { text-align: center; margin-bottom: 3rem; }
+    .mindmap-title h2 { font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+    .mindmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+    .mindmap-node { background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 16px; padding: 2rem; border-left: 5px solid var(--secondary); transition: all 0.3s; }
+    .mindmap-node:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(236,72,153,0.2); }
+    .mindmap-node h3 { color: var(--secondary); font-size: 1.4rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .mindmap-node ul { list-style: none; }
+    .mindmap-node li { padding: 0.5rem 0; color: #475569; position: relative; padding-left: 1.5rem; }
+    .mindmap-node li::before { content: '▸'; color: var(--primary); font-weight: 700; position: absolute; left: 0; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 12px; text-decoration: none; font-weight: 700; margin-bottom: 2rem; transition: all 0.3s; }
+    .back-btn:hover { background: var(--primary); color: white; }
+    footer { background: rgba(0,0,0,0.3); color: white; text-align: center; padding: 3rem 2rem; margin-top: 4rem; }
+    footer a { color: white; text-decoration: underline; }
+    @media (max-width: 768px) { .navbar-nav { display: none; } .hero h1 { font-size: 2rem; } .mindmap-container { padding: 2rem; } .mindmap-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-brand">🐾 OpenClaw</a>
+      <ul class="navbar-nav">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="../docs.html">文档中心</a></li>
+        <li><a href="../skills.html">Skills 示例</a></li>
+        <li><a href="../mindmaps.html">知识脑图</a></li>
+        <li><a href="../videos.html">视频资源</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <a href="../mindmaps.html" class="back-btn">← 返回脑图列表</a>
+    
+    <div class="hero">
+      <h1>💻 Skills 开发脑图</h1>
+      <p>从 0 到 1 创建自定义 Skills 的完整指南，包含开发流程、核心能力、调试技巧等</p>
+    </div>
+    
+    <div class="mindmap-container">
+      <div class="mindmap-title">
+        <h2>Skills 开发全景图</h2>
+        <p style="color: #64748b; font-size: 1.1rem;">8 大核心模块，掌握 Skills 开发的完整技能树</p>
+      </div>
+      
+      <div class="mindmap-grid">
+        <div class="mindmap-node">
+          <h3>📦 Skill 结构</h3>
+          <ul>
+            <li><strong>SKILL.html</strong> - 技能描述、触发规则、使用说明</li>
+            <li><strong>index.js</strong> - 主逻辑代码、工具调用、业务实现</li>
+            <li><strong>package.json</strong> - 依赖管理、版本信息、脚本命令</li>
+            <li><strong>README.html</strong> - 详细文档、使用示例、API 说明</li>
+            <li><strong>assets/</strong> - 资源文件（图片、模板等）</li>
+            <li><strong>tests/</strong> - 单元测试、集成测试</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🔄 开发流程</h3>
+          <ul>
+            <li><strong>需求分析</strong> - 明确目标用户、使用场景、核心功能</li>
+            <li><strong>设计阶段</strong> - 架构设计、接口设计、数据模型</li>
+            <li><strong>编码实现</strong> - 编写代码、调用工具、错误处理</li>
+            <li><strong>调试测试</strong> - 日志输出、断点调试、单元测试</li>
+            <li><strong>文档编写</strong> - SKILL.html、README、使用示例</li>
+            <li><strong>发布分享</strong> - 代码整理、版本标记、社区分享</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>⚡ 核心能力</h3>
+          <ul>
+            <li><strong>文件操作</strong> - read、write、edit、exec</li>
+            <li><strong>网络请求</strong> - web_fetch、browser、API 调用</li>
+            <li><strong>数据处理</strong> - JSON、CSV、Excel、PDF</li>
+            <li><strong>外部 API</strong> - 天气、股票、翻译、AI 服务</li>
+            <li><strong>定时任务</strong> - cron、every、at 调度</li>
+            <li><strong>消息通知</strong> - message、broadcast、提醒</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🐛 调试技巧</h3>
+          <ul>
+            <li><strong>日志输出</strong> - console.log、debug 信息</li>
+            <li><strong>错误处理</strong> - try-catch、错误日志、用户提示</li>
+            <li><strong>断点调试</strong> - debugger、vscode 调试配置</li>
+            <li><strong>性能分析</strong> - 执行时间、内存占用、优化点</li>
+            <li><strong>测试用例</strong> - 边界条件、异常场景、回归测试</li>
+            <li><strong>用户反馈</strong> - 收集问题、快速迭代、持续优化</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🏆 最佳实践</h3>
+          <ul>
+            <li><strong>代码规范</strong> - ESLint、Prettier、注释清晰</li>
+            <li><strong>错误处理</strong> - 友好的错误提示、降级方案</li>
+            <li><strong>性能优化</strong> - 缓存、懒加载、异步处理</li>
+            <li><strong>文档编写</strong> - 清晰的说明、完整的示例</li>
+            <li><strong>版本管理</strong> - Git、语义化版本、更新日志</li>
+            <li><strong>用户友好</strong> - 简单的配置、清晰的提示</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>📚 示例 Skills</h3>
+          <ul>
+            <li><strong>quote-of-day</strong> - 每日一句（入门级）</li>
+            <li><strong>todo-list</strong> - 待办事项管理（进阶级）</li>
+            <li><strong>file-processor</strong> - 文件处理工具（进阶级）</li>
+            <li><strong>web-scraper</strong> - 网页爬虫（高级）</li>
+            <li><strong>weather</strong> - 天气查询（API 调用）</li>
+            <li><strong>stock-watcher</strong> - 股票监控（数据可视化）</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🔧 常用工具库</h3>
+          <ul>
+            <li><strong>fs/path</strong> - Node.js 文件系统模块</li>
+            <li><strong>execSync</strong> - 执行 shell 命令</li>
+            <li><strong>axios</strong> - HTTP 请求库</li>
+            <li><strong>cheerio</strong> - HTML 解析</li>
+            <li><strong>puppeteer</strong> - 浏览器自动化</li>
+            <li><strong>moment/dayjs</strong> - 日期时间处理</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🚀 发布流程</h3>
+          <ul>
+            <li><strong>代码整理</strong> - 清理冗余代码、优化结构</li>
+            <li><strong>文档编写</strong> - README、使用说明、API 文档</li>
+            <li><strong>测试验证</strong> - 完整测试、边界测试、性能测试</li>
+            <li><strong>版本标记</strong> - git tag、版本号、更新日志</li>
+            <li><strong>社区分享</strong> - GitHub、Discord、技术博客</li>
+            <li><strong>持续维护</strong> - Bug 修复、功能迭代、用户支持</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.95); padding: 3rem; border-radius: 20px; text-align: center; margin-top: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+      <h3 style="font-size: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">💡 学习路径</h3>
+      <p style="color: #64748b; font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto 2rem;">
+        建议从<strong>quote-of-day</strong>入门，理解 Skill 基本结构。<br>
+        然后尝试<strong>todo-list</strong>或<strong>file-processor</strong>，掌握文件操作和数据处理。<br>
+        最后挑战<strong>web-scraper</strong>等高级 Skills，实现复杂功能。
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="../skills.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 12px; text-decoration: none; font-weight: 700;">💻 查看示例</a>
+        <a href="../docs/05-Skills 开发.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 12px; text-decoration: none; font-weight: 700;">📖 学习教程</a>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>🐾 OpenClaw 知识库 | MIT License</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/cchen1-08/openclaw-kb" target="_blank">GitHub</a> · 
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a> · 
+      <a href="https://discord.com/invite/clawd" target="_blank">Discord 社区</a>
+    </p>
+  </footer>
+</body>
+</html>

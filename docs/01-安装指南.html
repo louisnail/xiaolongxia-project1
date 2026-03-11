@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安装指南 - OpenClaw 知识库</title>
+  <style>
+    :root { --primary: #6366f1; --secondary: #ec4899; --accent: #8b5cf6; --bg: #0f172a; --text: #1e293b; --card-bg: rgba(255,255,255,0.98); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); background-size: 400% 400%; animation: gradient 15s ease infinite; min-height: 100vh; color: var(--text); line-height: 1.8; }
+    @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .navbar { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+    .navbar-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .navbar-brand { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+    .navbar-nav { display: flex; gap: 2.5rem; list-style: none; }
+    .navbar-nav a { color: #64748b; text-decoration: none; font-weight: 600; }
+    .navbar-nav a:hover { color: var(--primary); }
+    .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+    .hero { text-align: center; color: white; margin-bottom: 3rem; }
+    .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .hero p { font-size: 1.3rem; opacity: 0.95; }
+    .content { background: var(--card-bg); border-radius: 24px; padding: 4rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 3rem; }
+    .content h2 { color: var(--primary); font-size: 2rem; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--primary); }
+    .content h3 { color: var(--secondary); font-size: 1.5rem; margin: 2rem 0 1rem; }
+    .content p { margin: 1rem 0; color: #475569; }
+    .content ul { margin: 1rem 0 1rem 2rem; }
+    .content li { margin: 0.5rem 0; color: #475569; }
+    .info-box { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-left: 5px solid var(--primary); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; }
+    .info-box strong { color: var(--primary); }
+    .code-box { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; overflow-x: auto; font-family: 'Courier New', monospace; }
+    .nav-buttons { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e2e8f0; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 12px; text-decoration: none; font-weight: 700; transition: all 0.3s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99,102,241,0.5); }
+    .btn-secondary { background: white; color: var(--primary); border: 2px solid var(--primary); }
+    footer { background: rgba(0,0,0,0.3); color: white; text-align: center; padding: 3rem 2rem; margin-top: 4rem; }
+    footer a { color: white; text-decoration: underline; }
+    @media (max-width: 768px) { .navbar-nav { display: none; } .hero h1 { font-size: 2rem; } .content { padding: 2rem; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-brand">🐾 OpenClaw</a>
+      <ul class="navbar-nav">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="../docs.html">文档中心</a></li>
+        <li><a href="../skills.html">Skills 示例</a></li>
+        <li><a href="../mindmaps.html">知识脑图</a></li>
+        <li><a href="../videos.html">视频资源</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="hero">
+      <h1>📦 安装指南</h1>
+      <p>零基础安装教程，15 分钟快速部署 OpenClaw 环境</p>
+    </div>
+    
+    <div class="content">
+      <div class="info-box">
+        <strong>⏱️ 学习时长：</strong>15 分钟 &nbsp;|&nbsp; 
+        <strong>⭐ 难度等级：</strong>简单 &nbsp;|&nbsp; 
+        <strong>✅ 前置要求：</strong>无
+      </div>
+      
+      <h2>🎯 准备工作</h2>
+      <p>在开始之前，请确保您的计算机满足以下基本要求：</p>
+      <ul>
+        <li>操作系统：Windows 10/11、macOS 10.15+、或 Linux</li>
+        <li>内存：至少 4GB RAM（推荐 8GB）</li>
+        <li>磁盘空间：至少 1GB 可用空间</li>
+        <li>网络连接：用于下载依赖和配置渠道</li>
+      </ul>
+      
+      <h2>📥 步骤 1：安装 Node.js</h2>
+      <p>OpenClaw 基于 Node.js 构建，首先需要安装 Node.js 运行环境：</p>
+      <ol>
+        <li>访问 <a href="https://nodejs.org/" target="_blank">Node.js 官网</a></li>
+        <li>下载 LTS（长期支持）版本</li>
+        <li>运行安装程序，按照提示完成安装</li>
+        <li>验证安装：打开终端/命令行，输入 <code>node --version</code></li>
+      </ol>
+      
+      <div class="code-box">
+# 验证 Node.js 安装
+node --version
+# 应该显示类似：v20.x.x
+
+# 验证 npm 安装
+npm --version
+# 应该显示类似：10.x.x
+      </div>
+      
+      <h2>📦 步骤 2：获取 OpenClaw</h2>
+      <p>有两种方式获取 OpenClaw：</p>
+      
+      <h3>方式 A：从 GitHub 下载（推荐）</h3>
+      <div class="code-box">
+# 克隆 OpenClaw 仓库
+git clone https://github.com/openclaw/openclaw.git
+
+# 进入项目目录
+cd openclaw
+
+# 安装依赖
+npm install
+      </div>
+      
+      <h3>方式 B：直接下载压缩包</h3>
+      <ol>
+        <li>访问 <a href="https://github.com/openclaw/openclaw/releases" target="_blank">GitHub Releases</a></li>
+        <li>下载最新版本的 zip 文件</li>
+        <li>解压到本地目录</li>
+        <li>在目录中运行 <code>npm install</code></li>
+      </ol>
+      
+      <h2>⚙️ 步骤 3：配置环境变量</h2>
+      <p>创建 <code>.env</code> 文件并配置必要的密钥：</p>
+      
+      <div class="code-box">
+# 模型 API 密钥（选择一个即可）
+OPENAI_API_KEY=sk-your-openai-key
+# 或
+ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
+# 或
+DASHSCOPE_API_KEY=sk-your-dashscope-key
+
+# 可选：配置其他服务
+ELEVENLABS_API_KEY=your-elevenlabs-key  # TTS 服务
+      </div>
+      
+      <div class="info-box">
+        <strong>💡 提示：</strong>建议使用 DashScope（阿里云通义千问）以获得更稳定的国内访问体验。
+      </div>
+      
+      <h2>🔧 步骤 4：配置渠道接入</h2>
+      <p>选择您想要使用的通讯渠道进行配置：</p>
+      
+      <h3>Telegram（推荐新手）</h3>
+      <ol>
+        <li>在 Telegram 中搜索 @BotFather</li>
+        <li>发送 <code>/newbot</code> 创建新机器人</li>
+        <li>按照提示设置机器人名称和用户名</li>
+        <li>复制 Bot Token，保存到配置中</li>
+      </ol>
+      
+      <div class="code-box">
+# config.yaml 配置示例
+channels:
+  telegram:
+    - token: "your-telegram-bot-token"
+      name: "My Assistant"
+      model: "qwen-plus"
+      thinking: "on"
+      systemPrompt: "你是一位专业、友好、高效的 AI 助手..."
+      </div>
+      
+      <h2>🚀 步骤 5：启动 OpenClaw</h2>
+      <p>一切准备就绪！启动 OpenClaw Gateway：</p>
+      
+      <div class="code-box">
+# 启动 Gateway
+npm start
+
+# 或使用 nodemon 进行开发（自动重载）
+npm run dev
+      </div>
+      
+      <p>启动成功后，您会看到类似输出：</p>
+      <div class="code-box">
+[Gateway] Starting OpenClaw Gateway...
+[Channels] Loading channel plugins...
+[Telegram] Bot "My Assistant" started successfully
+[Sessions] Session manager initialized
+[Agents] Agent pool ready
+[Gateway] Gateway is running! Listening for messages...
+      </div>
+      
+      <h2>✅ 步骤 6：验证安装</h2>
+      <ol>
+        <li>在 Telegram 中找到您的机器人</li>
+        <li>发送第一条消息："你好"</li>
+        <li>等待 AI 回复（首次可能较慢）</li>
+        <li>如果收到回复，说明安装成功！</li>
+      </ol>
+      
+      <div class="info-box">
+        <strong>🎉 恭喜！</strong>您已经成功安装并配置了 OpenClaw！<br>
+        接下来可以查看 <a href="02-快速开始.html" style="color: var(--primary);">快速开始</a> 教程，学习如何使用更多功能。
+      </div>
+      
+      <h2>🐛 常见问题</h2>
+      
+      <h3>Q1: 启动时提示 "Cannot find module"</h3>
+      <p>解决方法：运行 <code>npm install</code> 重新安装依赖</p>
+      
+      <h3>Q2: Telegram 机器人无响应</h3>
+      <p>检查项：</p>
+      <ul>
+        <li>Bot Token 是否正确配置</li>
+        <li>网络连接是否正常</li>
+        <li>Gateway 日志是否有错误信息</li>
+      </ul>
+      
+      <h3>Q3: API 请求失败</h3>
+      <p>检查项：</p>
+      <ul>
+        <li>API Key 是否有效</li>
+        <li>模型名称是否正确</li>
+        <li>网络连接是否稳定</li>
+      </ul>
+      
+      <h2>📚 下一步</h2>
+      <p>安装完成后，建议按顺序学习：</p>
+      <ol>
+        <li><a href="02-快速开始.html" style="color: var(--primary);">🚀 快速开始</a> - 发送第一条消息，理解基本概念</li>
+        <li><a href="03-配置详解.html" style="color: var(--primary);">⚙️ 配置详解</a> - 完全掌握配置文件</li>
+        <li><a href="04-提示词工程.html" style="color: var(--primary);">💬 提示词工程</a> - 设计更好的提示词</li>
+      </ol>
+      
+      <div class="nav-buttons">
+        <a href="../docs.html" class="btn btn-secondary">← 返回文档中心</a>
+        <a href="02-快速开始.html" class="btn">快速开始 →</a>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>🐾 OpenClaw 知识库 | MIT License</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/cchen1-08/openclaw-kb" target="_blank">GitHub</a> · 
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a> · 
+      <a href="https://discord.com/invite/clawd" target="_blank">Discord 社区</a>
+    </p>
+  </footer>
+</body>
+</html>

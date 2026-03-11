@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>核心概念脑图 - OpenClaw 知识库</title>
+  <style>
+    :root { --primary: #6366f1; --secondary: #ec4899; --accent: #8b5cf6; --bg: #0f172a; --text: #1e293b; --card-bg: rgba(255,255,255,0.98); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); background-size: 400% 400%; animation: gradient 15s ease infinite; min-height: 100vh; color: var(--text); }
+    @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .navbar { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+    .navbar-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .navbar-brand { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+    .navbar-nav { display: flex; gap: 2.5rem; list-style: none; }
+    .navbar-nav a { color: #64748b; text-decoration: none; font-weight: 600; }
+    .navbar-nav a:hover { color: var(--primary); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+    .hero { text-align: center; color: white; margin-bottom: 3rem; }
+    .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .hero p { font-size: 1.3rem; opacity: 0.95; max-width: 800px; margin: 0 auto; }
+    .mindmap-container { background: var(--card-bg); border-radius: 24px; padding: 4rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 3rem; }
+    .mindmap-title { text-align: center; margin-bottom: 3rem; }
+    .mindmap-title h2 { font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+    .mindmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+    .mindmap-node { background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 16px; padding: 2rem; border-left: 5px solid var(--primary); transition: all 0.3s; }
+    .mindmap-node:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(99,102,241,0.2); }
+    .mindmap-node h3 { color: var(--primary); font-size: 1.4rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .mindmap-node ul { list-style: none; }
+    .mindmap-node li { padding: 0.5rem 0; color: #475569; position: relative; padding-left: 1.5rem; }
+    .mindmap-node li::before { content: '▸'; color: var(--secondary); font-weight: 700; position: absolute; left: 0; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 12px; text-decoration: none; font-weight: 700; margin-bottom: 2rem; transition: all 0.3s; }
+    .back-btn:hover { background: var(--primary); color: white; }
+    footer { background: rgba(0,0,0,0.3); color: white; text-align: center; padding: 3rem 2rem; margin-top: 4rem; }
+    footer a { color: white; text-decoration: underline; }
+    @media (max-width: 768px) { .navbar-nav { display: none; } .hero h1 { font-size: 2rem; } .mindmap-container { padding: 2rem; } .mindmap-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-brand">🐾 OpenClaw</a>
+      <ul class="navbar-nav">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="../docs.html">文档中心</a></li>
+        <li><a href="../skills.html">Skills 示例</a></li>
+        <li><a href="../mindmaps.html">知识脑图</a></li>
+        <li><a href="../videos.html">视频资源</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <a href="../mindmaps.html" class="back-btn">← 返回脑图列表</a>
+    
+    <div class="hero">
+      <h1>🗺️ OpenClaw 核心概念脑图</h1>
+      <p>全面理解 OpenClaw 的架构组成、消息流程、记忆系统、定时任务等核心概念</p>
+    </div>
+    
+    <div class="mindmap-container">
+      <div class="mindmap-title">
+        <h2>核心概念全景图</h2>
+        <p style="color: #64748b; font-size: 1.1rem;">8 大核心模块，构建完整的 OpenClaw 知识体系</p>
+      </div>
+      
+      <div class="mindmap-grid">
+        <div class="mindmap-node">
+          <h3>🏗️ 架构组成</h3>
+          <ul>
+            <li><strong>Gateway</strong> - 核心服务进程，管理所有功能</li>
+            <li><strong>Sessions</strong> - 会话管理，保持对话上下文</li>
+            <li><strong>Agents</strong> - AI 代理，执行具体任务</li>
+            <li><strong>Skills</strong> - 技能扩展，自定义功能</li>
+            <li><strong>Channels</strong> - 渠道接入（Telegram/微信/Discord）</li>
+            <li><strong>Memory</strong> - 记忆系统（MEMORY.html + memory/）</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>📬 消息流程</h3>
+          <ul>
+            <li>用户发送消息 → 渠道插件接收</li>
+            <li>渠道插件 → Gateway 处理</li>
+            <li>Gateway → Agent 推理</li>
+            <li>Agent → 调用工具（可选）</li>
+            <li>Agent → 生成回复</li>
+            <li>Gateway → 渠道插件 → 用户</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🧠 记忆系统</h3>
+          <ul>
+            <li><strong>MEMORY.html</strong> - 长期记忆（仅主会话加载）</li>
+            <li><strong>memory/</strong> - 日常笔记目录</li>
+            <li><strong>memory_search</strong> - 语义搜索记忆</li>
+            <li><strong>memory_get</strong> - 精确读取记忆片段</li>
+            <li><strong>session transcripts</strong> - 会话记录（可选搜索）</li>
+            <li>安全隔离（群聊不加载个人记忆）</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>⏰ 定时任务</h3>
+          <ul>
+            <li><strong>at</strong> - 一次性定时任务（绝对时间）</li>
+            <li><strong>every</strong> - 周期性任务（间隔时间）</li>
+            <li><strong>cron</strong> - Cron 表达式（灵活调度）</li>
+            <li><strong>systemEvent</strong> - 系统事件（主会话）</li>
+            <li><strong>agentTurn</strong> - Agent 执行（隔离会话）</li>
+            <li>应用场景：提醒、日报、周报、自动检查</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>💰 Token 优化</h3>
+          <ul>
+            <li><strong>提示词精简</strong> - 去除冗余，降低 30-50%</li>
+            <li><strong>上下文管理</strong> - 限制历史消息数量</li>
+            <li><strong>响应控制</strong> - 使用 NO_REPLY 减少输出</li>
+            <li><strong>缓存复用</strong> - 避免重复计算</li>
+            <li><strong>模型选择</strong> - 简单任务用轻量模型</li>
+            <li>成本降低：30-60%</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🛠️ Skills 开发</h3>
+          <ul>
+            <li><strong>SKILL.html</strong> - 技能描述和触发规则</li>
+            <li><strong>index.js</strong> - 主逻辑代码</li>
+            <li><strong>package.json</strong> - 依赖管理</li>
+            <li><strong>开发流程</strong> - 需求→设计→编码→调试→测试</li>
+            <li><strong>调试技巧</strong> - 日志、断点、错误处理</li>
+            <li><strong>最佳实践</strong> - 代码规范、性能优化</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🔗 渠道集成</h3>
+          <ul>
+            <li><strong>Telegram</strong> - Bot API，简单易用</li>
+            <li><strong>微信</strong> - 个人号/企业微信</li>
+            <li><strong>Discord</strong> - 服务器机器人</li>
+            <li><strong>Feishu</strong> - 飞书机器人</li>
+            <li><strong>WhatsApp</strong> - WhatsApp Business API</li>
+            <li><strong>Slack</strong> - Slack Bot</li>
+          </ul>
+        </div>
+        
+        <div class="mindmap-node">
+          <h3>🎯 使用场景</h3>
+          <ul>
+            <li><strong>个人助理</strong> - 日程管理、邮件处理</li>
+            <li><strong>知识管理</strong> - 文档管理、笔记系统</li>
+            <li><strong>工作自动化</strong> - 数据处理、报告生成</li>
+            <li><strong>开发辅助</strong> - 代码生成、代码审查</li>
+            <li><strong>内容创作</strong> - 文章写作、社交媒体</li>
+            <li><strong>研究分析</strong> - 文献调研、数据分析</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.95); padding: 3rem; border-radius: 20px; text-align: center; margin-top: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+      <h3 style="font-size: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">💡 学习建议</h3>
+      <p style="color: #64748b; font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto 2rem;">
+        建议先通览整个脑图，建立整体认知框架。<br>
+        然后根据自己的需求，深入学习相关模块。<br>
+        每个模块都有详细的文档教程，点击导航栏即可访问。
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="../docs/01-安装指南.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 12px; text-decoration: none; font-weight: 700;">📦 开始学习</a>
+        <a href="../docs.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 12px; text-decoration: none; font-weight: 700;">📚 浏览文档</a>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>🐾 OpenClaw 知识库 | MIT License</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/cchen1-08/openclaw-kb" target="_blank">GitHub</a> · 
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a> · 
+      <a href="https://discord.com/invite/clawd" target="_blank">Discord 社区</a>
+    </p>
+  </footer>
+</body>
+</html>
